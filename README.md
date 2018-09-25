@@ -12,8 +12,11 @@ overview.
 To connect from the command-line shell (e.g., Terminal), run:
 
 ```bash
-ssh <cnetid>@gardner.cri.uchicago.edu
+ssh userid@gardner.cri.uchicago.edu
 ```
+
+where `userid` would be replaced by the name of your CRI account
+(typically the same as your BSD account).
 
 If you are conneting frequently, you may want to set up SSH keys for
 your account, which will allow you to connect without having to type a
