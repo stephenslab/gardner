@@ -8,8 +8,8 @@ See [these slides](gardner-1.pdf) and [these](gardner-2.pdf).
 
 ## Connecting to gardner
 
-If you are on campus, to connect from the command-line shell (e.g.,
-Terminal), run:
+If you are on campus, to connect to gardner from the command-line
+shell (e.g., Terminal), run:
 
 ```bash
 ssh userid@gardner.cri.uchicago.edu
@@ -21,7 +21,7 @@ where `userid` would be replaced by the name of your CRI account
 To connect to gardner off-campus, you can either log in first to an
 on-campus location (e.g., midway), or you can use [cVPN][cvpn].
 
-If you are conneting frequently, you may want to set up SSH keys for
+If you are connecting frequently, you may want to set up SSH keys for
 your account, which will allow you to connect without having to type a
 password every time.
 
@@ -29,13 +29,19 @@ password every time.
 
 Most of your files will be stored in one of these four locations:
 
-+ `/home`:
++ `/home`: Where your home directory is located. Not a lot of space.
 
-+ `/gpfs/data`:
++ `/gpfs/data`: Where many labs store their files (e.g.,
+  `/gpfs/data/xhe-lab`). There is *a lot* of space here.
 
-+ `/group`:
++ `/group`: Where some other labs store their files (e.g.,
+  `/group/bergelson-lab`).
 
-+ `/scratch`:
++ `/scratch`: Although each user has a separate directory only
+  accessible to them, this is a shared file system, and there is also
+  a great deal of freely available space here.
+
+*Add info about backups.*
 
 ## Using the [TORQUE][torque] job scheduler
 
