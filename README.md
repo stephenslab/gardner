@@ -16,7 +16,7 @@ ssh userid@gardner.cri.uchicago.edu
 ```
 
 where `userid` would be replaced by the name of your CRI account
-(typically the same as your BSD account).
+(typically the same as your BSD account, although not always).
 
 To connect to gardner off-campus, you can either log in first to an
 on-campus location (e.g., midway), or you can use [cVPN][cvpn].
@@ -29,19 +29,19 @@ password every time.
 
 Most of your files will be stored in one of these four locations:
 
-+ `/home`: Where your home directory is located. Not a lot of space.
+1. `/home`: Where your home directory is located. Not a lot of space.
 
-+ `/gpfs/data`: Where many labs store their files (e.g.,
-  `/gpfs/data/xhe-lab`). There is *a lot* of space here.
+2. `/gpfs/data`: Where many labs store their files (e.g.,
+   `/gpfs/data/xhe-lab`). There is *a lot* of space here.
 
-+ `/group`: Where some other labs store their files (e.g.,
-  `/group/bergelson-lab`).
+3. `/group`: Where some other labs store their files (e.g.,
+   `/group/bergelson-lab`).
 
-+ `/scratch`: Although each user has a separate directory only
-  accessible to them, this is a shared file system, and there is also
-  a great deal of freely available space here.
+4. `/scratch`: Although each user has a separate directory only
+   accessible to them, this is a shared file system, and there is also
+   a great deal of freely available space here.
 
-*Add info about backups.*
+*TO DO: add info about backups.*
 
 ## Using the [TORQUE][torque] job scheduler
 
