@@ -4,7 +4,9 @@ Our notes on using the CRI cluster, [gardner][gardner].
 
 ## Documentation from the CRI
 
-See [these slides](gardner-1.pdf) and [these](gardner-2.pdf).
+See [these slides](gardner-1.pdf) and [these](gardner-2.pdf). The CRI
+also has a [Wiki][cri-wiki] with some basic information about the
+gardner cluster.
 
 ## Connecting to gardner
 
@@ -49,5 +51,6 @@ Most of your files will be stored in one of these four locations:
 e.g., run a computation that takes a minute or two in R.*
 
 [gardner]: http://cri.uchicago.edu/hpc
+[cri-wiki]: https://wiki.uchicago.edu/display/public/CRI/Home
 [torque]: https://en.wikipedia.org/wiki/TORQUE
 [cvpn]: https://uchicago.service-now.com/it?id=kb_article&kb=kb00015292
