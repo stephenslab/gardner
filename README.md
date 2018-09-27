@@ -34,7 +34,12 @@ Most of your files will be stored in one of these four locations:
 1. `/home`: Where your home directory is located. Not a lot of space.
 
 2. `/gpfs/data`: Where many labs store their files (e.g.,
-   `/gpfs/data/xhe-lab`). There is *a lot* of space here.
+   `/gpfs/data/xhe-lab`). There is *a lot* of space here. You can use
+   `df` to check how much space is left in an individual directory, e.g.,
+
+    ```bash
+    df -h /gpfs/data/xhe-lab
+    ```
 
 3. `/group`: Where some other labs store their files (e.g.,
    `/group/bergelson-lab`).
@@ -45,12 +50,45 @@ Most of your files will be stored in one of these four locations:
 
 *TO DO: add info about backups.*
 
-## Using the [TORQUE][torque] job scheduler
+## Software
 
-*Nick, please add a simple interactive and non-interactive demo here,
-e.g., run a computation that takes a minute or two in R.*
+The gardner cluster uses [Lmod][lmod] to organize the many different
+versions of software that have been installed. It may seem a little
+complicated at first, but isn't too bad once you start using it.
+
+For example, suppose you want to use R. First, find out which versions
+of R are available, run
+
+```bash
+module spider R
+```
+
+You will likely see that several versions of R are available. Suppose
+you want to use R version 3.3.3. Next, run
+
+```bash
+module spider R/3.3.3
+```
+
+It should tell you that you will need to first load two modules,
+gcc 6.2.0 and mpich 3.2, in order to use R 3.3.3. Go ahead and load
+these modules:
+
+```bash
+module load gcc/6.2.0 mpich/3.2 R/3.3.3
+```
+
+Now you are ready to use R.
+
+## Using the TORQUE job scheduler
+
++ Gardner uses [TORQUE][torque].
+
+**To do:** Nick, please add a simple interactive and non-interactive
+demo here, e.g., run a computation that takes a minute or two in R.
 
 [gardner]: http://cri.uchicago.edu/hpc
 [cri-wiki]: https://wiki.uchicago.edu/display/public/CRI/Home
 [torque]: https://en.wikipedia.org/wiki/TORQUE
 [cvpn]: https://uchicago.service-now.com/it?id=kb_article&kb=kb00015292
+[lmod]: http://lmod.readthedocs.org
