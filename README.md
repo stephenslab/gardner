@@ -80,12 +80,92 @@ module load gcc/6.2.0 mpich/3.2 R/3.3.3
 
 Now you are ready to use R.
 
+Because you can only have one version of a module loaded at a time, unloading the `R` module is as simple as 
+
+```bash
+module unload R
+```
+
+To unload _all_ modules,:
+
+```bash
+module purge
+```
+
+To see all currently loaded modules:
+
+```bash
+module list
+```
+
+
 ## Using the TORQUE job scheduler
 
 + Gardner uses [TORQUE][torque].
 
-**To do:** Nick, please add a simple interactive and non-interactive
-demo here, e.g., run a computation that takes a minute or two in R.
+`qsub` is the main command that's used for interacting with the job scheduler. It can be used to submit interactive jobs as well as batch jobs
+
+### Using `qsub` interactively
+To obtain a 5 hour interactive session on a compute node with (at least) 32Gb of RAM and 12 CPU cores (on 1 compute node) use the following syntax
+```bash
+qsub -I -l walltime=05:00:00 -l nodes=1:ppn=12 -l mem=32Gb
+```
+
+Keep in mind that modules loaded in the login load are _not_ automatically loaded.
+
+```console
+user@cri16in002:~:module load gcc/6.2.0 R/3.5.0
+user@cri16in002:~:module list
+
+Currently Loaded Modules:
+  1) gcc/6.2.0   2) java-jdk/1.8.0_92   3) zlib/1.2.8   4) bzip2/1.0.6   5) xz/5.2.2   6) curl/7.51.0   7) pcre/8.39   8) R/3.5.0
+
+
+user@cri16in002:~:qsub -I -l walltime=01:00:00 -l nodes=1:ppn=1 -l mem=1Gb 
+qsub: waiting for job 11277124.cri16sc001 to start
+qsub: job 11277124.cri16sc001 ready
+
+user@cri16cn053:~:module list
+No modules loaded
+
+```
+
+### Using `qsub` for batch jobs
+
+Batch jobs are also submitted with qsub.  The only differences are 1) the `-I` flag is omitted, and 2) that is that it's customary to specify job requirements in the batch file itself.  Here's an example:
+
+```console
+user@cri16in002:~:qsub Rprof.sh
+11277362.cri16sc001
+```
+
+And here's what `Rprof.sh` might look like:
+
+```bash
+#!/bin/bash                                                                                                                                                                                                                                  
+#PBS -N R_Benchmark #-N names the job                                                                          
+#PBS -S /bin/bash   #-S indicates which shell we want                                                         
+#PBS -l mem=3gb     #-l is used for specifying requirements                                                   
+#PBS -l walltime=00:10:00 
+#PBS -l nodes=1:ppn=10                                                                                                                                                                                                                       
+
+
+#Below the #PBS directives                                                                                                                                                                                                                   
+
+module load gcc/6.2.0 R/3.5.0
+#This runs a classic R benchmark, but first we have to make sure we've installed install a package                                                                                                                                           
+R --slave -e 'if(!require("SuppDists")){install.packages("SuppDists")}'
+
+R --slave -e 'source("https://raw.githubusercontent.com/jtalbot/riposte/master/benchmarks/other/R-benchmark-25.R")'
+
+#Another way to run the same benchmark is to download it first with `wget` and then use Rscript/R CMD BATCH                                                                                                                                  
+wget https://raw.githubusercontent.com/jtalbot/riposte/master/benchmarks/other/R-benchmark-25.R -O /tmp/R-benchmark-25.R
+
+Rscript /tmp/R-benchmark-25.R
+```
+
+
+
 
 [gardner]: http://cri.uchicago.edu/hpc
 [cri-wiki]: https://wiki.uchicago.edu/display/public/CRI/Home
