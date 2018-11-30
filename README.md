@@ -124,13 +124,35 @@ compute node with 10 CPUs and 3 GB of memory, and at most 10 minutes
 of runtime.
 
 To run this job, you will first need to install the
-[SuppDists][suppdists] package in R. Once you have don this, to submit
-this job to the scheduler, simply run the following from the root
-directory of this repository:
+[SuppDists][suppdists] package in R. You will also need to modify this
+line in `demo.sh` to point to the location of the git repository that
+you have cloned or downloaded to gardner:
+
+```bash
+cd $HOME/git/gardner
+```
+
+Once you have done these two
+things, to submit this job to the scheduler, simply run the following
+from the root directory of this repository:
 
 ```R
 qsub demo.sh
 ```
+
+You can use `qstat` to check the status of the job in the queue. While
+the job is running, it should write the output to a file named
+`demo.oxxx`, where "xxx" is the job id. Once the job has completed (it
+may take a few minutes), the end of this txt file should look something
+like this:
+
+```
+Total time for all 15 tests_________________________ (sec):  39.0573333333333
+Overall mean (sum of I, II and III trimmed means/3)_ (sec):  1.17529314479865
+--- End of test ---
+```
+
+followed by a "Job WrapUp" section.
 
 [gardner]: http://cri.uchicago.edu/hpc
 [cri-wiki]: https://wiki.uchicago.edu/display/public/CRI/Home
