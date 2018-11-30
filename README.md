@@ -118,7 +118,7 @@ will not automatically be loaded in a compute node.
 
 ### Submitting a job using qsub
 
-We have provided [a short example script][demo.sh] in which the qsub
+We have provided [a small example script](demo.sh) in which the qsub
 options are specified inside the script. In this example, we request a
 compute node with 10 CPUs and 3 GB of memory, and at most 10 minutes
 of runtime.
@@ -154,9 +154,13 @@ Overall mean (sum of I, II and III trimmed means/3)_ (sec):  1.17529314479865
 
 followed by a "Job WrapUp" section.
 
+For more information, see the "Job submission" section of the [Torque
+user guide][torque-docs]
+
 [gardner]: http://cri.uchicago.edu/hpc
 [cri-wiki]: https://wiki.uchicago.edu/display/public/CRI/Home
 [torque]: https://en.wikipedia.org/wiki/TORQUE
+[torque-docs]: http://docs.adaptivecomputing.com/torque/6-1-2/adminGuide/torqueAdminGuide-6.1.2.pdf
 [cvpn]: https://uchicago.service-now.com/it?id=kb_article&kb=kb00015292
 [lmod]: http://lmod.readthedocs.org
 [suppdists]: https://cran.r-project.org/package=SuppDists
