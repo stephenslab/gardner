@@ -13,4 +13,5 @@
 module load gcc/6.2.0 R/3.5.0
 
 # Run classic R benchmark from https://github.com/jtalbot/riposte.
+cd $HOME/git/gardner
 Rscript R-benchmark-25.R

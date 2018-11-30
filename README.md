@@ -121,11 +121,15 @@ will not automatically be loaded in a compute node.
 We have provided [a short example script][demo.sh] in which the qsub
 options are specified inside the script. In this example, we request a
 compute node with 10 CPUs and 3 GB of memory, and at most 10 minutes
-of runtime. To submit this job to the scheduler, simply run the
-following from the root directory of this repository:
+of runtime.
+
+To run this job, you will first need to install the
+[SuppDists][suppdists] package in R. Once you have don this, to submit
+this job to the scheduler, simply run the following from the root
+directory of this repository:
 
 ```R
-qsub Rprof.sh
+qsub demo.sh
 ```
 
 [gardner]: http://cri.uchicago.edu/hpc
@@ -133,3 +137,4 @@ qsub Rprof.sh
 [torque]: https://en.wikipedia.org/wiki/TORQUE
 [cvpn]: https://uchicago.service-now.com/it?id=kb_article&kb=kb00015292
 [lmod]: http://lmod.readthedocs.org
+[suppdists]: https://cran.r-project.org/package=SuppDists
