@@ -80,13 +80,14 @@ module load gcc/6.2.0 mpich/3.2 R/3.3.3
 
 Now you are ready to use R.
 
-Because you can only have one version of a module loaded at a time, unloading the `R` module is as simple as 
+Because you can only have one version of a module loaded at a time,
+unloading the `R` module is as simple as
 
 ```bash
 module unload R
 ```
 
-To unload _all_ modules,:
+To unload *all* modules:
 
 ```bash
 module purge
