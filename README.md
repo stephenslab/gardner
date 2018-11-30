@@ -98,74 +98,35 @@ To see all currently loaded modules:
 module list
 ```
 
-
 ## Using the TORQUE job scheduler
 
-+ Gardner uses [TORQUE][torque].
+Gardner uses [TORQUE][torque]. "qsub" is the main command that's used
+for interacting with the job scheduler. It can be used to request
+interactive sessions, or submit jobs.
 
-`qsub` is the main command that's used for interacting with the job scheduler. It can be used to submit interactive jobs as well as batch jobs
+### Requesting an interactive session
 
-### Using `qsub` interactively
-To obtain a 5 hour interactive session on a compute node with (at least) 32Gb of RAM and 12 CPU cores (on 1 compute node) use the following syntax
-```bash
-qsub -I -l walltime=05:00:00 -l nodes=1:ppn=12 -l mem=32Gb
-```
-
-Keep in mind that modules loaded in the login load are _not_ automatically loaded.
-
-```console
-user@cri16in002:~:module load gcc/6.2.0 R/3.5.0
-user@cri16in002:~:module list
-
-Currently Loaded Modules:
-  1) gcc/6.2.0   2) java-jdk/1.8.0_92   3) zlib/1.2.8   4) bzip2/1.0.6   5) xz/5.2.2   6) curl/7.51.0   7) pcre/8.39   8) R/3.5.0
-
-
-user@cri16in002:~:qsub -I -l walltime=01:00:00 -l nodes=1:ppn=1 -l mem=1Gb 
-qsub: waiting for job 11277124.cri16sc001 to start
-qsub: job 11277124.cri16sc001 ready
-
-user@cri16cn053:~:module list
-No modules loaded
-
-```
-
-### Using `qsub` for batch jobs
-
-Batch jobs are also submitted with qsub.  The only differences are 1) the `-I` flag is omitted, and 2) that is that it's customary to specify job requirements in the batch file itself.  Here's an example:
-
-```console
-user@cri16in002:~:qsub Rprof.sh
-11277362.cri16sc001
-```
-
-And here's what `Rprof.sh` might look like:
+In this example, we request a 5-hour interactive session on a compute
+node with 32 GB memory and 12 CPUs:
 
 ```bash
-#!/bin/bash                                                                                                                                                                                                                                  
-#PBS -N R_Benchmark #-N names the job                                                                          
-#PBS -S /bin/bash   #-S indicates which shell we want                                                         
-#PBS -l mem=3gb     #-l is used for specifying requirements                                                   
-#PBS -l walltime=00:10:00 
-#PBS -l nodes=1:ppn=10                                                                                                                                                                                                                       
-
-
-#Below the #PBS directives                                                                                                                                                                                                                   
-
-module load gcc/6.2.0 R/3.5.0
-#This runs a classic R benchmark, but first we have to make sure we've installed install a package                                                                                                                                           
-R --slave -e 'if(!require("SuppDists")){install.packages("SuppDists")}'
-
-R --slave -e 'source("https://raw.githubusercontent.com/jtalbot/riposte/master/benchmarks/other/R-benchmark-25.R")'
-
-#Another way to run the same benchmark is to download it first with `wget` and then use Rscript/R CMD BATCH                                                                                                                                  
-wget https://raw.githubusercontent.com/jtalbot/riposte/master/benchmarks/other/R-benchmark-25.R -O /tmp/R-benchmark-25.R
-
-Rscript /tmp/R-benchmark-25.R
+qsub -I -l walltime=05:00:00 -l nodes=1:ppn=12 -l mem=32gb
 ```
 
+Keep in mind that if you load modules in a login node, these modules
+will not automatically be loaded in a compute node.
 
+### Submitting a job using qsub
 
+We have provided [a short example script][demo.sh] in which the qsub
+options are specified inside the script. In this example, we request a
+compute node with 10 CPUs and 3 GB of memory, and at most 10 minutes
+of runtime. To submit this job to the scheduler, simply run the
+following from the root directory of this repository:
+
+```R
+qsub Rprof.sh
+```
 
 [gardner]: http://cri.uchicago.edu/hpc
 [cri-wiki]: https://wiki.uchicago.edu/display/public/CRI/Home
