@@ -132,18 +132,18 @@ you have cloned or downloaded to gardner:
 cd $HOME/git/gardner
 ```
 
-Once you have done these two
-things, to submit this job to the scheduler, simply run the following
-from the root directory of this repository:
+Once you have done these two things, to submit this job to the
+scheduler simply run the following from the root directory of this
+repository:
 
 ```R
 qsub demo.sh
 ```
 
 You can use `qstat` to check the status of the job in the queue. While
-the job is running, it should write the output to a file named
+the job is running, it should write the output to a text file named
 `demo.oxxx`, where "xxx" is the job id. Once the job has completed (it
-may take a few minutes), the end of this txt file should look something
+may take a few minutes), the end of the text file should look something
 like this:
 
 ```
@@ -154,8 +154,8 @@ Overall mean (sum of I, II and III trimmed means/3)_ (sec):  1.17529314479865
 
 followed by a "Job WrapUp" section.
 
-For more information, see the "Job submission" section of the [Torque
-user guide][torque-docs]
+For more information on submitting jobs, see the "Job submission"
+section of the [Torque user guide][torque-docs].
 
 [gardner]: http://cri.uchicago.edu/hpc
 [cri-wiki]: https://wiki.uchicago.edu/display/public/CRI/Home
