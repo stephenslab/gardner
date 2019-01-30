@@ -8,6 +8,23 @@ See [these slides](gardner-1.pdf) and [these](gardner-2.pdf). The CRI
 also has a [Wiki][cri-wiki] with some basic information about the
 gardner cluster.
 
+## Accounts and groups
+
+Run
+
+``bash
+groups
+```
+
+to list the groups you belong to.
+
+To find who are the members of a group, you can use the `getent`
+command. For example, to list all members of Xin's lab, run
+
+```bash
+getent group cri-xhe_lab
+```
+
 ## Connecting to gardner
 
 If you are on campus, to connect to gardner from the command-line
