@@ -12,7 +12,7 @@ gardner cluster.
 
 Run
 
-``bash
+```bash
 groups
 ```
 
