@@ -19,10 +19,12 @@ groups
 to list the groups you belong to.
 
 To find who are the members of a group, you can use the `getent`
-command. For example, to list all members of Xin's lab, run
+command. For example, to list all members of Xin's and Matthew's labs,
+run
 
 ```bash
 getent group cri-xhe_lab
+getent group cri-stephens_lab
 ```
 
 ## Connecting to gardner
@@ -51,11 +53,13 @@ Most of your files will be stored in one of these four locations:
 1. `/home`: Where your home directory is located. Not a lot of space.
 
 2. `/gpfs/data`: Where many labs store their files (e.g.,
-   `/gpfs/data/xhe-lab`). There is *a lot* of space here. You can use
-   `df` to check how much space is left in an individual directory, e.g.,
+   `/gpfs/data/xhe-lab`, `/gpfs/data/stephens-lab`). There is a lot
+   of space here. You can use `df` to check how much space is left in
+   an individual directory, e.g.,
 
     ```bash
     df -h /gpfs/data/xhe-lab
+	df -h /gpfs/data/stephens-lab
     ```
 
 3. `/group`: Where some other labs store their files (e.g.,
