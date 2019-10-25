@@ -2,6 +2,10 @@
 
 Our notes on using the CRI cluster, [gardner][gardner].
 
+## Getting an account on Gardner
+
+Fill out the form [here](https://cri-app02.bsd.uchicago.edu/WebProvisioning/Service.aspx).  Note that you will likely need to apply for a BSDAD account
+
 ## Documentation from the CRI
 
 See [these slides](gardner-1.pdf) and [these](gardner-2.pdf). The CRI
