@@ -6,6 +6,7 @@ Our notes on using the CRI cluster, [gardner][gardner].
 
 Fill out the form [here](https://cri-app02.bsd.uchicago.edu/WebProvisioning/Service.aspx).  Note that you will likely need to apply for a BSDAD account
 
+
 ## Documentation from the CRI
 
 See [these slides](gardner-1.pdf) and [these](gardner-2.pdf). The CRI
@@ -43,8 +44,28 @@ ssh userid@gardner.cri.uchicago.edu
 where `userid` would be replaced by the name of your CRI account
 (typically the same as your BSD account, although not always).
 
-To connect to gardner off-campus, you can either log in first to an
-on-campus location (e.g., midway), or you can use [cVPN][cvpn].
+The Gardner cluster is not on the public internet.  The login node
+will only accept ssh connections from within the university network.  
+To connect to gardner via `ssh`,  you should first connect to the 
+university VPN using the university provided VPN client 
+[cisco anyconnect](https://vpn.uchicago.edu).
+ Linux users that have difficulty with anyconnect can try 
+ [openconnect-sso](https://github.com/vlaci/openconnect-sso).
+Another option for those with an account on midway2 is to use 
+midway2 as an ssh proxy. To use midway2 as a proxy, add something 
+like the following to the file `~/ssh/.config`
+
+```
+Host gardner_proxy
+     HostName gardner.cri.uchicago.edu
+     User your_cri_user_name
+     LogLevel error        
+     ProxyJump your_midway2_user_name@midway2.rcc.uchicago.edu:22
+```
+
+You can then connect to gardner
+
+`ssh gardner_proxy`
 
 If you are connecting frequently, you may want to set up SSH keys for
 your account, which will allow you to connect without having to type a
